@@ -1,3 +1,16 @@
+"""
+Authy has positioned itself as the clear rival to Google Authenticator, and right off the bat, 
+it does have one clear advantage. It offers to back up all of your saved accounts, in case you have to wipe the phone,
+or if you change phones. This is it does by encrypting the information and storing it in the cloud.
+
+Authy also distinguishes itself by offering a desktop app, as well as the smartphone version. 
+So you don’t have to be handcuffed to your phone if you don’t want to. Service name, it's length and 2-permutation should be used. 
+
+Instead, you can get your codes directly from your desktop computer screen. 
+If you don’t own a smartphone or tablet, Authy is particularly useful, allowing you
+to finally use 2FA.
+"""
+
 import urllib
 import urllib2
 import time
