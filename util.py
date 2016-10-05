@@ -369,12 +369,14 @@ dd if=/dev/zero of=/mnt/50MB/sml bs=1M count=50
 or /dev/random or pseudo /dev/urandom
 in busy, see pid/user
 echo -n str 
-sha256sum 
+md5sum
+sha256sum
+sha256sum
 cut -c -64
 base64
 head -n 1
-tr -d '+/'
-cut -c -20
+tr -d '1234567890'
+cut -c -40
 lsof /fuser
 lsblk -b or losetup
 echo -ne "Name\nPass\n"|sudo mount -t davfs https://webdav.blablacom/ /mnt/webdrivee
@@ -404,6 +406,7 @@ def createCertificate(req, issuerCertKey, serial, validityPeriod,
     """
     issuerCert, issuerKey = issuerCertKey
     notBefore, notAfter = validityPeriod
+    
     cert = crypto.X509()
     cert.set_serial_number(serial)
     cert.gmtime_adj_notBefore(notBefore)
@@ -411,5 +414,36 @@ def createCertificate(req, issuerCertKey, serial, validityPeriod,
     cert.set_issuer(issuerCert.get_subject())
     cert.set_subject(req.get_subject())
     cert.set_pubkey(req.get_pubkey())
+    
     cert.sign(issuerKey, digest)
 return cert
+# 2-x indrv emVuVFdPMlxjbGRzY2xkc1xuY2xkczE0Q0xEUzE0ZnJlZWhpZHJcblwyMTRl
+# 56 ostso cmVkTUlSN1xjbGRzY2xkc1xuY2xkczEyQ0xEUzEyaG9zdGlzbzEyQ0xPVURcblwzNTZk
+# 7-x vlt   YmluU0FXMlxjbGRzY2xkc1xuY2xkczEyQ0xEUzEyY2xvdWR2YXVsdDEyQ0hcblw4NzFk
+
+try:
+    from ctypes import c_ssize_t
+except ImportError:
+    from ctypes import c_longlong as c_ssize_t
+
+import ctypes
+from ctypes.util import find_library
+import logging
+import mmap
+import os
+
+from .exception import ArchiveError
+
+
+logger = logging.getLogger('libarchive')
+
+page_size = mmap.PAGESIZE
+
+libarchive_path = os.environ.get('LIBARCHIVE') or find_library('archive')
+libarchive = ctypes.cdll.LoadLibrary(libarchive_path)
+
+
+# Constants
+
+ARCHIVE_EOF = 1       # Found end of archive.
+ARCHIVE_OK = 0 # Operation was successful.
