@@ -350,3 +350,68 @@ inbx.lv
 gmx.com
 
 """
+
+
+
+"""
+mount -t tmpfs -o size=51m tmpfs /mnt/ramdisk
+echo -n  0| base64
+MA==
+echo -n  00| base64
+MDA=
+openssl aes-256-cbc -a -salt -in secrets.txt -out secrets.txt.enc
+gpg --gen-key --homedir ~/.smth
+tar -zcvf archive-name.tar.gz directory-name
+tar -xzvf ./qq.tar.gz -C /tmp
+gpg --recipient Anton --encrypt filename
+gpg --decrypt-files filename.gpg
+gpg --symmetric --cipher-algo AES256 file.txt
+pgpdump show metadata
+dd if=/dev/zero of=/mnt/50MB/sml bs=1M count=50
+or /dev/random or pseudo /dev/urandom
+in busy, see pid/user
+echo -n str 
+sha256sum 
+cut -c -64
+base64
+head -n 1
+tr -d '+/'
+cut -c -20
+lsof /fuser
+lsblk -b or losetup
+echo -ne "Name\nPass\n"|sudo mount -t davfs https://webdav.blablacom/ /mnt/webdrivee
+umount /mnt/your-path-to-folder
+echo -n passs| cryptsetup create CryDisk  /mnt/ramdisk/foo
+mkfs.ext4  /dev/mapper/CryDisk
+mount  /dev/mapper/CryDisk   /mnt/foo-path
+find .  -iname "*linux*"
+grep -rni . -e "foo-pattern"
+r- recurs  n -output # of line with pattern, i -ignore Case, -e - pattern to search in files
+"""
+
+def createCertificate(req, issuerCertKey, serial, validityPeriod,
+                      digest="sha256"):
+    """
+    Generate a certificate given a certificate request.
+    Arguments: req        - Certificate request to use
+               issuerCert - The certificate of the issuer
+               issuerKey  - The private key of the issuer
+               serial     - Serial number for the certificate
+               notBefore  - Timestamp (relative to now) when the certificate
+                            starts being valid
+               notAfter   - Timestamp (relative to now) when the certificate
+                            stops being valid
+               digest     - Digest method to use for signing, default is sha256
+    Returns:   The signed certificate in an X509 object
+    """
+    issuerCert, issuerKey = issuerCertKey
+    notBefore, notAfter = validityPeriod
+    cert = crypto.X509()
+    cert.set_serial_number(serial)
+    cert.gmtime_adj_notBefore(notBefore)
+    cert.gmtime_adj_notAfter(notAfter)
+    cert.set_issuer(issuerCert.get_subject())
+    cert.set_subject(req.get_subject())
+    cert.set_pubkey(req.get_pubkey())
+    cert.sign(issuerKey, digest)
+return cert
