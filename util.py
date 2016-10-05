@@ -224,9 +224,7 @@ https://www.mydrive.ch/
 https://www.free-hidrive.com/product/overview.html
 пароль до 20 симв!
 5 гб вебдав
-WebDAV (also via SSL) !!
-быстрый!
-Но дает для входа домен 5 уровня что плохо: https://твоёимя.webdav.hidrive.strato.com/
+https://cldsclds.webdav.hidrive.strato.com/
 
 https://webdav.cubby.com/
 
@@ -242,10 +240,10 @@ https://длинная-случайна-строка.webdav.drivehq.com
 5 гб фри
 https://www.idrivesync.com/webdav
 
-https://cloud.zaclys.com/  1 гб но еще и некстклауд!!
+ https://webcloud.zaclys.com/remote.php/webdav 1 гб но еще и некстклауд!!
 
 1 gb free
-https://hostiso.com/owncloud-hosting/
+https://oc.hostiso.cloud/remote.php/webdav/ 
 
 3 гб
 https://www.blaucloud.de/en
